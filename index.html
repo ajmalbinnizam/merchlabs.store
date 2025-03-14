@@ -16,6 +16,9 @@
     <script src=https://kit.fontawesome.com/3c09bcb51a.js></script>
     <title>merchlabs.store</title>
     <link href="styles/main.css" rel="stylesheet">
+    <!-- ...existing code... -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-..." crossorigin="anonymous">
+<!-- ...existing code... -->
 </head>
 
 <body>
@@ -34,18 +37,39 @@
                     <h1>MERCHLABS.STORE</h1>
                     <h1>COMING SOON</h1>
                     <p class=slogan>We’re working our way to launch our new merchandise store. Stay tuned for exciting products and exclusive deals! </p>
-                    <form class=form-subscribe action=#> <input type=email class=form placeholder="Your email address"
-                            required> <button type=submit>Subscribe</button> </form>
+                    <p class=slogan>
+                        Drop the message below to send sms to merchlabs team. We will get back to you as soon as possible.
+                    </p>
+                    <form class=form-subscribe action=#> 
+                        <input type="text" id="messageInput" class="form" placeholder="Your message" required>
+                            <button type="submit" id="sendSMS">Sent SMS</button> </form>
                 </div>
                 <ul class=icon-list>
-                    <li class=icon><a class=facebook href=google.com></a></li>
-                    <li class=icon><a class=instagram href=google.com></a></li>
-                    <li class=icon><a class=youtube href=google.com></a></li>
-                    
+                    <li class=icon>
+                        <a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a>
+                    </li>
+                    <li class=icon><a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a></li>
+                    <li class=icon><a href="https://www.youtube.com"><i class="fab fa-youtube"></i></a></li>
                 </ul>
             </div>
         </div>
     </div>
+
+    <script>
+    document.getElementById("sendSMS").addEventListener("click", async () => {
+        const messageBody = document.getElementById("messageInput").value;
+
+        const response = await fetch("https://meeting-sms-1633.twil.io/send_sms", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams({ messageBody }) // Sending the message as form data
+        });
+
+        const result = await response.json();
+        alert("SMS sent successfully!");
+    });
+    </script>
+
     <script type="text/javascript" src="scripts/bundle.js"></script>
  
 </body>
